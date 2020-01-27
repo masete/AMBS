@@ -2,8 +2,3 @@
 venv/
 ven/
 __pycache__/
-#ambs/__pycache__/__init__.cpython-36.pyc
-#ambs/__pycache__/config.cpython-36.pyc
-#ambs/dashboard/__pycache__/__init__.cpython-36.pyc
-#ambs/dashboard/__pycache__/routes.cpython-36.pyc
-#/myenv
