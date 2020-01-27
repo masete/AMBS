@@ -10,10 +10,8 @@ def create_app(config_class=Config):
     from ambs.dashboard.routes import main
     from ambs.importers.routes import importer
 
-
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(importer)
-
 
     return app

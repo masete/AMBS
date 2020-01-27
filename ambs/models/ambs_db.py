@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from psycopg2.extras import RealDictCursor
+from werkzeug.security import generate_password_hash
 
 
 class DatabaseConnection:
@@ -19,7 +20,7 @@ class DatabaseConnection:
                     )
             """,
             """
-                 CREATE TABLE IF NOT EXISTS medicine (                    
+                 CREATE TABLE IF NOT EXISTS medicine(                    
                     med_id SERIAL PRIMARY KEY,
                     HSCODE VARCHAR(20),
                     HSCOD10 VARCHAR(20),
@@ -76,7 +77,7 @@ class DatabaseConnection:
                     USHSVAL VARCHAR(20) NOT NULL,	
                     VAL_USD VARCHAR(20) NOT NULL,	
                     LOSS_REV VARCHAR(20) NOT NULL,	
-                    TOT_TAX	DUTYP VARCHAR(20) NOT NULL,	
+                    TOT_TAX_DUTYP VARCHAR(20) NOT NULL,	
                     DUTY VARCHAR(20) NOT NULL,	
                     EXCISE VARCHAR(20) NOT NULL,	
                     VAT VARCHAR(20) NOT NULL,
@@ -87,7 +88,7 @@ class DatabaseConnection:
                     DVAT VARCHAR(20) NOT NULL,	
                     FORM_FEE VARCHAR(20) NOT NULL,	
                     REG_FEE VARCHAR(20) NOT NULL,	
-                    CO_NAME	RCPT VARCHAR(20) NOT NULL,	
+                    CO_NAME_RCPT VARCHAR(20) NOT NULL,	
                     RCPT_DATE VARCHAR(20) NOT NULL,	
                     UNITVAL VARCHAR(20) NOT NULL,	
                     DRATE VARCHAR(20) NOT NULL,	
@@ -97,58 +98,13 @@ class DatabaseConnection:
                 )
             """
         )
-        try:
-            # self.attributes = dict(dbname='senditdb',
-            #                        user='postgres',
-            #                        password='qwerty',
-            #                        host='localhost',
-            #                        port='5432')
-            # self.connection = psycopg2.connect(**self.attributes, cursor_factory=RealDictCursor)
-            if os.getenv("FLASK_ENV") == "production":
-                self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
-
-            elif os.getenv("FLASK_ENV") == "TESTING":
-                print('Connecting to test db')
-                self.connection = psycopg2.connect(dbname='test_senditdb',
-                                                   user='postgres',
-                                                   password='qwerty',
-                                                   host='localhost',
-                                                   port='5432', cursor_factory=RealDictCursor)
-            else:
-                print('Connecting development db')
-                self.connection = psycopg2.connect(dbname='senditdb',
-                                                   user='postgres',
-                                                   password='qwerty',
-                                                   host='localhost',
-                                                   port='5432', cursor_factory=RealDictCursor)
-            self.connection.autocommit = True
-            self.cursor = self.connection.cursor()
-
-            for command in self.commands:
-                self.cursor.execute(command)
-        except Exception as error:
-            print(f"error: {error}")
-
-        self.cursor.execute("SELECT * FROM users WHERE email= '{}'".format("admin@gmail.com"))
-        if self.cursor.fetchone():
-            return None
-        # set admin user
-        # hash_pwd = generate_password_hash("masete24")
-        # sql = "INSERT INTO users(username, email, password, role) VALUES('admin', 'admin@gmail.com', '{}', True)"\
-            # .format(hash_pwd)
-
-        self.cursor.execute(sql)
-        self.connection.commit()
-
-    """
-    method to drop tables being used in my tests
-    """
-    # def drop_tables(self):
-    #     query = "DROP TABLE IF EXISTS {} CASCADE"
-    #     tabl_names = ["medicine, users"]
-    #     for name in tabl_names:
-    #         self.cursor.execute(query.format(name))
-
-    def create_tables(self):
+        self.connection = psycopg2.connect(dbname='ambs',
+                                           user='postgres',
+                                           password='12345678',
+                                           host='localhost',
+                                           port='5432')
+        self.connection.autocommit = True
+        self.cursor = self.connection.cursor()
+        print(self.cursor)
         for command in self.commands:
             self.cursor.execute(command)
