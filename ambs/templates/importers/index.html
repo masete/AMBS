@@ -11,6 +11,8 @@
 <!--            <div class="container">-->
 <!--               {{ table|safe }}-->
 <!--           </div>-->
+
+
           <table id="example2" class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -33,73 +35,53 @@
             </tr>
             </thead>
             <tbody>
-            {%for i in range(0, len)%}
-            <tr>
-              <td>{{meds[0]}}</td>
-              <td>{{meds[1]}}</td>
-              <td>{{meds[2]}}</td>
-              <td>{{meds[3]}}</td>
-              <td>{{meds[4]}}</td>
-              <td>{{meds[5]}}</td>
-              <td>{{meds[6]}}</td>
-              <td>{{meds[7]}}</td>
-              <td>{{meds[8]}}</td>
-              <td>{{meds[9]}}</td>
-              <td>{{meds[10]}}</td>
-              <td>{{meds[11]}}</td>
-              <td>{{meds[12]}}</td>
-              <td>{{meds[13]}}</td>
-              <td>{{meds[14]}}</td>
-              <td>{{meds[15]}}</td>
-              <td>{{meds[16]}}</td>
-              <td>{{meds[17]}}</td>
-              <td>{{meds[18]}}</td>
-              <td>{{meds[19]}}</td>
-              <td>{{meds[20]}}</td>
-              <td>{{meds[21]}}</td>
-
-                {%endfor%}
-            </tr>
+              {% for key in meds %}
+                <tr>
+                  {% for column in key %}
+                    <td>{{ key[column] }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
 
 
-            <tr>
-              <td>Gecko</td>
-              <td>Authorised</td>
-              <td>12%</td>
-              <td>1.8</td>
-              <td>A</td>
-            <tr>
-              <td>Misc</td>
-              <td>Lynx</td>
-              <td>Text only</td>
-              <td>-</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>IE Mobile</td>
-              <td>Windows Mobile 6</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
+<!--            <tr>-->
+<!--              <td>Gecko</td>-->
+<!--              <td>Authorised</td>-->
+<!--              <td>12%</td>-->
+<!--              <td>1.8</td>-->
+<!--              <td>A</td>-->
+<!--            <tr>-->
+<!--              <td>Misc</td>-->
+<!--              <td>Lynx</td>-->
+<!--              <td>Text only</td>-->
+<!--              <td>-</td>-->
+<!--              <td>X</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>Misc</td>-->
+<!--              <td>IE Mobile</td>-->
+<!--              <td>Windows Mobile 6</td>-->
+<!--              <td>-</td>-->
+<!--              <td>C</td>-->
+<!--            </tr>-->
 
-            <tr>
-              <td>Other browsers</td>
-              <td>All others</td>
-              <td>-</td>
-              <td>-</td>
-              <td>U</td>
-            </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Name of Drug</th>
-                <th>Authorisation</th>
-                <th>Taxation</th>
-                <th>Quanity</th>
-                <th> grade</th>
-              </tr>
-            </tfoot>
+<!--            <tr>-->
+<!--              <td>Other browsers</td>-->
+<!--              <td>All others</td>-->
+<!--              <td>-</td>-->
+<!--              <td>-</td>-->
+<!--              <td>U</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--            <tfoot>-->
+<!--              <tr>-->
+<!--                <th>Name of Drug</th>-->
+<!--                <th>Authorisation</th>-->
+<!--                <th>Taxation</th>-->
+<!--                <th>Quanity</th>-->
+<!--                <th> grade</th>-->
+<!--              </tr>-->
+<!--            </tfoot>-->
           </table>
         </div>
         <!-- /.card-body -->

@@ -8,7 +8,7 @@ medList = []
 
 class AmbsModel:
 
-    def __init__(self, HSCODE=None, HSCOD10=None, HSDESC=None, HSDESC2=None, MARKS1=None, MARKS2=None, CHASIS_NO=None,
+    def __init__(self,med_id=1, HSCODE=None, HSCOD10=None, HSDESC=None, HSDESC2=None, MARKS1=None, MARKS2=None, CHASIS_NO=None,
                     DEC_TYP=None, CPC1=None, CPC_EXT=None, CPC=None, STAT_CD=None, CO_CODE=None, TIN=None, REF_NO=None,
                     PRDOC=None, WHS=None, TSHED=None, BANK=None, FRONT_OFF=None, MANIF=None, PREP_CD=None, MM_ASS=None,
                     YY_REG=None, MM_REG=None, DD_REG=None, CURR=None, CONTRA=None, INFO7=None, SERIES=None, CRC=None,
@@ -19,6 +19,7 @@ class AmbsModel:
                  ENVTAX=None, EXPTAX=None,DVAT=None,FORM_FEE=None,REG_FEE=None,CO_NAME=None,RCPT=None,RCPT_DATE=None,
                  UNITVAL=None,DRATE=None,VRATE=None,AGENT=None, RGN=None):
 
+        self.med_id = med_id
         self.HSCODE = HSCODE,
         self.HSCOD10 = HSCOD10,
         self.HSDESC = HSDESC,
@@ -99,6 +100,13 @@ class AmbsModel:
         get_all_med = "SELECT * FROM medicine"
         cur.execute(get_all_med)
         results = cur.fetchall()
+        return results
+
+    def single_med(self, med_id):
+
+        get_single_drug = "SELECT * FROM parcel WHERE med_id = {}".format(med_id)
+        cur.execute(get_single_drug)
+        results = cur.fetchone()
         return results
 
 

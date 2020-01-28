@@ -20,7 +20,8 @@ class DatabaseConnection:
                     )
             """,
             """
-                 CREATE TABLE IF NOT EXISTS medicine(                    
+                 CREATE TABLE IF NOT EXISTS medicine(  
+                    med_id SERIAL PRIMARY KEY,                  
                     HSCODE VARCHAR(20),
                     HSCOD10 VARCHAR(20),
                     HSDESC VARCHAR(550),
