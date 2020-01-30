@@ -6,7 +6,7 @@ model_inst = AmbsModel()
 importer = Blueprint('importers', __name__)
 
 
-@importer.route("/imported_drugs")
+@importer.route('/imported_drugs')
 def imported_drugs():
     # med_id = 1
     meds = model_inst.get_all_med()
@@ -15,3 +15,21 @@ def imported_drugs():
     # return jsonify({"all medicines": meds})
 
     return render_template('importers/index.html', title='importers', len = len(meds), meds=meds)
+
+
+@importer.route('/imported_drugs<int:med_id>')
+def imported_drug_by_id(med_id):
+    meds_per_year = model_inst.single_med(med_id)
+
+    return jsonify({"medicines per year": meds_per_year})
+
+
+@importer.route('/imported_drugs/<int:ASS_DATE>')
+def imported_drugs_annually(ASS_DATE):
+    meds_per_year = model_inst.drugs_per_year(ASS_DATE)
+
+    return jsonify({"medicines per year": meds_per_year})
+
+
+
+# def imported_drugs_annually():

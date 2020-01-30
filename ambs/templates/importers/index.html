@@ -6,11 +6,19 @@
         <div class="card-header">
           <h3 class="card-title">Imported Drugs</h3>
         </div>
+
+        <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
         <!-- /.card-header -->
         <div class="card-body">
-<!--            <div class="container">-->
-<!--               {{ table|safe }}-->
-<!--           </div>-->
 
 
           <table id="example2" class="table table-bordered table-striped">
@@ -44,44 +52,6 @@
               {% endfor %}
 
 
-<!--            <tr>-->
-<!--              <td>Gecko</td>-->
-<!--              <td>Authorised</td>-->
-<!--              <td>12%</td>-->
-<!--              <td>1.8</td>-->
-<!--              <td>A</td>-->
-<!--            <tr>-->
-<!--              <td>Misc</td>-->
-<!--              <td>Lynx</td>-->
-<!--              <td>Text only</td>-->
-<!--              <td>-</td>-->
-<!--              <td>X</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>Misc</td>-->
-<!--              <td>IE Mobile</td>-->
-<!--              <td>Windows Mobile 6</td>-->
-<!--              <td>-</td>-->
-<!--              <td>C</td>-->
-<!--            </tr>-->
-
-<!--            <tr>-->
-<!--              <td>Other browsers</td>-->
-<!--              <td>All others</td>-->
-<!--              <td>-</td>-->
-<!--              <td>-</td>-->
-<!--              <td>U</td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--            <tfoot>-->
-<!--              <tr>-->
-<!--                <th>Name of Drug</th>-->
-<!--                <th>Authorisation</th>-->
-<!--                <th>Taxation</th>-->
-<!--                <th>Quanity</th>-->
-<!--                <th> grade</th>-->
-<!--              </tr>-->
-<!--            </tfoot>-->
           </table>
         </div>
         <!-- /.card-body -->

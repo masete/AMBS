@@ -104,11 +104,17 @@ class AmbsModel:
 
     def single_med(self, med_id):
 
-        get_single_drug = "SELECT * FROM parcel WHERE med_id = {}".format(med_id)
+        get_single_drug = "SELECT * FROM medicine WHERE med_id = {}".format(med_id)
         cur.execute(get_single_drug)
         results = cur.fetchone()
         return results
 
+    def drugs_per_year(self, ASS_DATE):
+
+        drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
+        cur.execute(drug_per_year)
+        results = cur.fetchone()
+        return results
 
 
     # def __init__(self, parcel_id=None, parcel_location=None, parcel_destination=None, parcel_weight=None,
