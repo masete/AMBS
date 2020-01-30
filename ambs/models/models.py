@@ -98,7 +98,7 @@ class AmbsModel:
 
     def get_all_med(self):
         # HSCODE	HSCOD10	HSDESC	HSDESC2	MARKS1	MARKS2	CHASIS_NO
-        get_all_med = "SELECT HSCODE, HSCOD10, HSDESC, HSDESC2, MARKS1, MARKS2, CHASIS_NO, DEC_TYP  FROM medicine"
+        get_all_med = "SELECT med_id, HSCODE, HSCOD10, HSDESC, HSDESC2, MARKS1, MARKS2, CHASIS_NO, DEC_TYP  FROM medicine"
         cur.execute(get_all_med)
         results = cur.fetchall()
         return results

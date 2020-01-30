@@ -28,8 +28,8 @@ def filtered_fields(AGENT,CO_NAME,RCPT_DATE,SUPP_QTY):
 @importer.route('/imported_drugs/<int:med_id>')
 def imported_drug_by_id(med_id):
     meds_per_year = model_inst.single_med(med_id)
-
-    return jsonify({"medicines per year": meds_per_year})
+    return render_template('importers/single_data_field.html', title='importers', meds_per_year=meds_per_year)
+    # return jsonify({"medicines per year": meds_per_year})
 
 
 @importer.route('/imported_drugs/<int:ASS_DATE>')

@@ -24,10 +24,15 @@
           <table id="example2" class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>HSCODE</th> <th>HSCOD10</th> <th>HSDESC</th> <th>HSDESC2</th>
+              <td>ID</td>
+              <th>HSCODE</th>
+              <th>HSCOD10</th>
+              <th>HSDESC</th>
+              <th>HSDESC2</th>
               <th>MARKS1</th>
                <th>MARKS2</th>
-              <th>CHASIS_NO</th> <th>DEC_TYP</th>
+              <th>CHASIS_NO</th>
+              <th>DEC_TYP</th>
 <!--              <th>CPC1</th> <th>CPC_EXT</th> <th>CPC</th> <th>STAT_CD</th>-->
 <!--              <th>CO_CODE</th> <th>TIN</th> <th>REF_NO</th> <th>PRDOC</th> <th>WHS</th> <th>TSHED</th> <th>BANK</th>-->
 <!--              <th>FRONT_OFF</th> <th>MANIF</th> <th>PREP_CD</th> <th>MM_ASS</th> <th>YY_REG</th> <th>MM_REG</th>-->
@@ -47,7 +52,11 @@
               {% for key in meds %}
                 <tr>
                   {% for column in key %}
-                    <td>{{ key[column] }}</td>
+                    {% if column == 'hscode' %}
+                      <td><a href="/imported_drugs/{{key.med_id}}">{{ key[column] }}</a></td>
+                    {% else %}
+                      <td>{{ key[column] }}</td>
+                    {% endif %}
                   {% endfor %}
                 </tr>
               {% endfor %}

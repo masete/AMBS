@@ -1,0 +1,215 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Single Detailed data field</h3>
+        </div>
+
+<!--        <form class="form-inline ml-3">-->
+<!--      <div class="input-group input-group-sm">-->
+<!--        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <div class="input-group-append">-->
+<!--          <button class="btn btn-navbar" type="submit">-->
+<!--            <i class="fas fa-search"></i>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>HSCODE</th>
+                        <th>HSCOD10</th>
+                        <th>HSDESC</th>
+                        <th>HSDESC2</th>
+                        <th>MARKS1</th>
+                        <th>MARKS2</th>
+                        <th>CHASIS_NO</th>
+                        <th>DEC_TYP</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>{{ meds_per_year.hscode }}</td>
+                        <td>{{ meds_per_year.hscod10 }}</td>
+                        <td>{{ meds_per_year.hsdesc }}</td>
+                        <td>{{ meds_per_year.hsdesc2 }}</td>
+                        <td>{{ meds_per_year.marks1 }}</td>
+                        <td>{{ meds_per_year.marks2 }}</td>
+                        <td>{{ meds_per_year.chasis_no }}</td>
+                        <td>{{ meds_per_year.dec_typ }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                <tr>
+                    <th>CPC1</th>
+                    <th>CPC_EXT</th>
+                    <th>CPC</th>
+                    <th>STAT_CD</th>
+                    <th>CO_CODE</th>
+                    <th>TIN</th>
+                    <th>REF_NO</th>
+                    <th>PRDOC</th>
+                </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                <tr>
+                    <th>WHS</th>
+                    <th>TSHED</th>
+                    <th>BANK</th>
+                    <th>FRONT_OFF</th>
+                    <th>MANIF</th>
+                    <th>PREP_CD</th>
+                    <th>MM_ASS</th>
+                    <th>YY_REG</th>
+                    <th>MM_REG</th>
+                </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>DD_REG</th>
+                        <th>CURR</th>
+                        <th>CONTRA</th>
+                        <th>INFO7</th>
+                        <th>SERIES</th>
+                        <th>CRC</th>
+                        <th>PKG_CD</th>
+                        <th>MOT</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                <tr>
+                    <th>NAT_MOT</th>
+                    <th>FUNDING</th>
+                    <th>AWB</th>
+                    <th>CTY_C</th>
+                    <th>CTY_O</th>
+                    <th>CTY_D</th>
+                    <th>AGR_CD</th>
+                    <th>SUP_CD</th>
+                </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>ITEM_NO</th>
+                        <th>ASS_NO</th>
+                        <th>ASS_DATE</th>
+                        <th>INFORMAT</th>
+                        <th>REGNO</th>
+                        <th>RCV_NO</th>
+                        <th>NO_PKGS</th>
+                        <th>NT_WT</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>GR_WT</th>
+                        <th>SUPP_QTY</th>
+                        <th>QTY</th>
+                        <th>USHSVAL</th>
+                        <th>VAL_USD</th>
+                        <th>LOSS_REV</th>
+                        <th>TOT_TAX</th>
+                        <th>DUTYP</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>DUTY</th>
+                        <th>EXCISE</th>
+                        <th>VAT</th>
+                        <th>WTAX</th>
+                        <th>COMM</th>
+                        <th>ENVTAX</th>
+                        <th>EXPTAX</th>
+                        <th>DVAT</th>
+                        <th>FORM_FEE</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>REG_FEE</th>
+                        <th>CO_NAME</th>
+                        <th>RCPT</th>
+                        <th>RCPT_DATE</th>
+                        <th>UNITVAL</th>
+                        <th>DRATE</th>
+                        <th>VRATE</th>
+                        <th>AGENT</th>
+                        <th>RGN</th>
+                    </tr>
+                </thead>
+            </table>
+<!--          <table id="example2" class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>HSCODE</th> <th>HSCOD10</th> <th>HSDESC</th> <th>HSDESC2</th>-->
+<!--              <th>MARKS1</th>-->
+<!--               <th>MARKS2</th>-->
+<!--              <th>CHASIS_NO</th> <th>DEC_TYP</th>-->
+<!--              <th>CPC1</th> <th>CPC_EXT</th> <th>CPC</th> <th>STAT_CD</th>-->
+<!--              <th>CO_CODE</th> <th>TIN</th> <th>REF_NO</th> <th>PRDOC</th> <th>WHS</th> <th>TSHED</th> <th>BANK</th>-->
+<!--              <th>FRONT_OFF</th> <th>MANIF</th> <th>PREP_CD</th> <th>MM_ASS</th> <th>YY_REG</th> <th>MM_REG</th>-->
+<!--              <th>DD_REG</th> <th>CURR</th> <th>CONTRA</th> <th>INFO7</th> <th>SERIES</th> <th>CRC</th> <th>PKG_CD</th>-->
+<!--              <th>MOT</th> <th>NAT_MOT</th> <th>FUNDING</th> <th>AWB</th> <th>CTY_C</th> <th>CTY_O</th> <th>CTY_D</th>-->
+<!--              <th>AGR_CD</th> <th>SUP_CD</th> <th>ITEM_NO</th> <th>ASS_NO</th> <th>ASS_DATE</th> <th>INFORMAT</th>-->
+<!--              <th>REGNO</th> <th>RCV_NO</th> <th>NO_PKGS</th> <th>NT_WT</th> <th>GR_WT</th> <th>SUPP_QTY</th>-->
+<!--              <th>QTY</th> <th>USHSVAL</th> <th>VAL_USD</th> <th>LOSS_REV</th> <th>TOT_TAX</th> <th>DUTYP</th>-->
+<!--              <th>DUTY</th> <th>EXCISE</th> <th>VAT</th> <th>WTAX</th> <th>COMM</th> <th>ENVTAX</th> <th>EXPTAX</th>-->
+<!--              <th>DVAT</th> <th>FORM_FEE</th> <th>REG_FEE</th> <th>CO_NAME</th><th>RCPT</th>-->
+<!--              <th>RCPT_DATE</th> <th>UNITVAL</th> <th>DRATE</th> <th>VRATE</th> <th>AGENT</th> <th>RGN</th>-->
+
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              {% for key in meds %}-->
+<!--                <tr>-->
+<!--                  {% for column in key %}-->
+<!--                    <td>{{ key[column] }}</td>-->
+<!--                  {% endfor %}-->
+<!--                </tr>-->
+<!--              {% endfor %}-->
+
+
+<!--              <tr-->
+
+<!--          </table>-->
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+
+{% endblock content %}
