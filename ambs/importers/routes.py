@@ -17,7 +17,15 @@ def imported_drugs():
     return render_template('importers/index.html', title='importers', len = len(meds), meds=meds)
 
 
-@importer.route('/imported_drugs<int:med_id>')
+@importer.route('/filtered_imported_drugs/')
+def filtered_fields(AGENT,CO_NAME,RCPT_DATE,SUPP_QTY):
+    filtered_list = model_inst.get_most_needed_med(AGENT, CO_NAME, RCPT_DATE, SUPP_QTY)
+
+    return render_template('importers/index.html', title='importers', len=len(filtered_list), filtered_list=filtered_list)
+    # return jsonify({"filtered fields from medicine table": filtered_list})
+
+
+@importer.route('/imported_drugs/<int:med_id>')
 def imported_drug_by_id(med_id):
     meds_per_year = model_inst.single_med(med_id)
 
