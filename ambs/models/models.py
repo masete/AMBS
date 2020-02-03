@@ -129,4 +129,10 @@ class AmbsModel:
         results = cur.fetchone()
         return results
 
+    def get_nda_data(self):
+        nda = "SELECT SN , DRUGSHOP,PHYSICAL_ADDRESS ,TEL ,FULL_TIME_INCHARGE ,QUALIFICATION , REGISTRATION_NO ," \
+              "OWNER,   HUMAN_VET_HERBAL, NEW_RENEWAL, DISTRICT  FROM medicine"
+        cur.execute(nda)
+        results = cur.fetchall()
+        return results
 
