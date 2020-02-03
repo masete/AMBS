@@ -3,8 +3,6 @@ from flask import jsonify
 
 cur = DatabaseConnection().cursor
 
-medList = []
-
 
 class AmbsModel:
 
@@ -96,8 +94,10 @@ class AmbsModel:
         self.AGENT = AGENT,
         self.RGN = RGN
 
+
     def get_all_med(self):
-        get_all_med = "SELECT med_id, HSCODE, HSCOD10, HSDESC, HSDESC2, MARKS1, MARKS2, CHASIS_NO, ASS_DATE  FROM medicine"
+        get_all_med = "SELECT med_id, HSCODE, HSCOD10, HSDESC, HSDESC2, MARKS1, MARKS2, CHASIS_NO, " \
+                      "ASS_DATE  FROM medicine"
         cur.execute(get_all_med)
         results = cur.fetchall()
         return results
@@ -107,12 +107,6 @@ class AmbsModel:
         cur.execute(chart_data)
         results = cur.fetchall()
         return results
-    # def get_most_needed_med(self, AGENT, CO_NAME, RCPT_DATE, SUPP_QTY):
-    #     needed = "SELECT AGENT, CO_NAME, RCPT_DATE, SUPP_QTY FROM medicine ORDER BY " \
-    #              "AGENT".format(AGENT, CO_NAME, RCPT_DATE, SUPP_QTY)
-    #     cur.execute(needed)
-    #     results = cur.fetchall()
-    #     return results
 
     def single_med(self, med_id):
 
@@ -127,12 +121,5 @@ class AmbsModel:
         drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
         cur.execute(drug_per_year)
         results = cur.fetchone()
-        return results
-
-    def get_nda_data(self):
-        nda = "SELECT SN , DRUGSHOP,PHYSICAL_ADDRESS ,TEL ,FULL_TIME_INCHARGE ,QUALIFICATION , REGISTRATION_NO ," \
-              "OWNER,   HUMAN_VET_HERBAL, NEW_RENEWAL, DISTRICT  FROM medicine"
-        cur.execute(nda)
-        results = cur.fetchall()
         return results
 

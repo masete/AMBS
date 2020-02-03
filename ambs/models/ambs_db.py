@@ -20,7 +20,7 @@ class DatabaseConnection:
                     )
             """,
             """
-                 CREATE TABLE IF NOT EXISTS medicine(  
+                 CREATE TABLE IF NOT EXISTS medicine(
                     med_id SERIAL PRIMARY KEY,                  
                     HSCODE VARCHAR(20),
                     HSCOD10 VARCHAR(20),
@@ -100,8 +100,8 @@ class DatabaseConnection:
                 )
             """,
             """
-                 CREATE TABLE IF NOT EXISTS nda_data(  
-                    SN VARCHAR(100),
+                 CREATE TABLE IF NOT EXISTS nda_data(
+                    SN VARCHAR(100) PRIMARY KEY,
                     DRUGSHOP VARCHAR(100),	
                     PHYSICAL_ADDRESS VARCHAR(100),		
                     TEL VARCHAR(100),

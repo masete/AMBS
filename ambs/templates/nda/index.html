@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">NDA DATA</h3>
+        </div>
+
+        <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+
+          <table id="example2" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <td>SN</td>
+              <th>DRUGSHOP</th>
+              <th>PHYSICAL_ADDRESS</th>
+              <th>TEL</th>
+              <th>FULL_TIME_INCHARGE </th>
+              <th>QUALIFICATION</th>
+               <th>REGISTRATION_NO</th>
+              <th>OWNER</th>
+              <th>HUMAN_VET_HERBAL</th>
+              <th>NEW_RENEWAL</th>
+              <th> DISTRICT</th>
+
+            </tr>
+            </thead>
+            <tbody>
+              {% for key in data %}
+                <tr>
+                  {% for column in key %}
+<!--                    {% if column == 'hscode' %}-->
+<!--                      <td><a href="/imported_drugs/{{key.med_id}}">{{ key[column] }}</a></td>-->
+<!--                    {% else %}-->
+                      <td>{{ key[column] }}</td>
+<!--                    {% endif %}-->
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+
+
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  
+{% endblock content %}
