@@ -102,6 +102,11 @@ class AmbsModel:
         results = cur.fetchall()
         return results
 
+    def get_chart_data(self):
+        chart_data = "SELECT med_id,CO_NAME, ASS_DATE  FROM medicine"
+        cur.execute(chart_data)
+        results = cur.fetchall()
+        return results
     # def get_most_needed_med(self, AGENT, CO_NAME, RCPT_DATE, SUPP_QTY):
     #     needed = "SELECT AGENT, CO_NAME, RCPT_DATE, SUPP_QTY FROM medicine ORDER BY " \
     #              "AGENT".format(AGENT, CO_NAME, RCPT_DATE, SUPP_QTY)
@@ -115,21 +120,13 @@ class AmbsModel:
         cur.execute(get_single_drug)
         results = cur.fetchone()
         return results
-
+    #
     def drugs_per_year(self, ASS_DATE):
 
+        d = "SELECT EXTRACT(YEAR FROM ASS '2001-02-16 20:38:40')";
         drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
         cur.execute(drug_per_year)
         results = cur.fetchone()
         return results
 
 
-    # def __init__(self, parcel_id=None, parcel_location=None, parcel_destination=None, parcel_weight=None,
-    #              parcel_description=None, status=None):
-    #     self.parcel_id = parcel_id
-    #     self.parcel_location = parcel_location
-    #     self.parcel_destination = parcel_destination
-    #     self.parcel_weight = parcel_weight
-    #     self.parcel_description = parcel_description
-    #     self.status = status
-    #     self.cursor = cursor

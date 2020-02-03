@@ -98,6 +98,22 @@ class DatabaseConnection:
                     AGENT VARCHAR(100),	
                     RGN VARCHAR(20) 
                 )
+            """,
+            """
+                 CREATE TABLE IF NOT EXISTS nda_data(  
+                    SN VARCHAR(100),
+                    DRUGSHOP VARCHAR(100),	
+                    PHYSICAL_ADDRESS VARCHAR(100),		
+                    TEL VARCHAR(100),
+                    FULL_TIME_INCHARGE VARCHAR(100),	
+                    QUALIFICATION VARCHAR(100),
+                    REGISTRATION_NO VARCHAR(100),		
+                    OWNER VARCHAR(100),		
+                    HUMAN_VET_HERBAL VARCHAR(100),		
+                    NEW_RENEWAL VARCHAR(100),		
+                    DISTRICT VARCHAR(100)
+                    )
+
             """
         )
         self.connection = psycopg2.connect(dbname='ambs',
@@ -111,16 +127,3 @@ class DatabaseConnection:
         for command in self.commands:
             self.cursor.execute(command)
 
-        # def get_all_med(self):
-        #
-        #     get_all_meds = "SELECT * FROM medicine"
-        #     self.cursor.execute(get_all_meds)
-        #     results = self.cursor.fetchall()
-        #
-        #     print (results)
-            # return results
-
-        # def get_all_sales(self):
-        #     get_sale = "SELECT * FROM sales"
-        #     self.cursor.execute(get_sale)
-        #     return self.cursor.fetchall()
