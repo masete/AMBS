@@ -17,13 +17,13 @@ def imported_drugs():
     return render_template('importers/index.html', title='importers', len = len(meds), meds=meds)
 
 @importer.route('/data')
-def chart_data():
+def data():
     # med_id = 1
-    data = model_inst.get_chart_data()
+    data1 = model_inst.get_chart_data()
 
       # return jsonify({"all medicines": data})
 
-    return render_template('importers/index.html', title='importers', len = len(data), data=data)
+    return render_template('importers/index.html', title='importers', len = len(data1), data1=data1)
 
 
 

@@ -1,10 +1,13 @@
 from flask import Flask
 from ambs.config import Config
+from flask_cors import CORS
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__) 
+    app = Flask(__name__)
     app.config.from_object(Config)
+
+    CORS(app)
 
     from ambs.errors.handlers import errors
     from ambs.dashboard.routes import main

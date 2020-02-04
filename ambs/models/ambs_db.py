@@ -116,11 +116,15 @@ class DatabaseConnection:
 
             """
         )
-        self.connection = psycopg2.connect(dbname='ambs',
-                                           user='postgres',
-                                           password='12345678',
-                                           host='localhost',
-                                           port='5432', cursor_factory=RealDictCursor)
+        if os.getenv("FLASK_ENV") == "production":
+            self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+
+        else:
+            self.connection = psycopg2.connect(dbname='ambs',
+                                               user='postgres',
+                                               password='12345678',
+                                               host='localhost',
+                                               port='5432', cursor_factory=RealDictCursor)
         self.connection.autocommit = True
         self.cursor = self.connection.cursor()
         print(self.cursor)

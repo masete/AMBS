@@ -29,7 +29,7 @@ class NdaDataModel:
         return results
 
     def get_district(self):
-        nda = "SELECT DISTRICT  FROM nda_data"
+        nda = "SELECT DISTRICT, count(DISTRICT) AS Count FROM nda_data GROUP BY DISTRICT"
         cur.execute(nda)
         results = cur.fetchall()
         return results

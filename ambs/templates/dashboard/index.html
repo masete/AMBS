@@ -70,7 +70,6 @@
             <div class="card">
                 <div class="card-header">
                 <h5 class="card-title">Monthly Recap Report</h5>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -97,49 +96,50 @@
                 <div class="row">
                     <div class="col-md-8">
                     <p class="text-center">
-                        <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                        <strong>Drug shops in various districts</strong>
                     </p>
 
-                        <canvas id="myChart"></canvas>
+                         <canvas id="bar-chart" width="800" height="450"></canvas>
+
+
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                         <script>
-                                let ctx = document.getElementById('myChart').getContext('2d');
-                                var myChart = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                        datasets: [{
-                                            label: '# of Votes',
-                                            data: [12, 19, 3, 5, 2, 3],
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255, 99, 132, 1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true
-                                                }
-                                            }]
-                                        }
+
+                            let data = {{nda_chart_data|tojson}}
+                            let count = []
+                            let district = []
+
+                            for(let i = 0; i < data.length; i ++){
+                                count.push(data[i]['count'])
+                                district.push(data[i]['district'])
+                            }
+                            new Chart(document.getElementById("bar-chart"), {
+                                type: 'bar',
+                                data: {
+                                  labels: district,
+                                  datasets: [
+                                    {
+                                      label: "Population (millions)",
+                                      backgroundColor: [],
+                                      data: count
                                     }
-                                });
-                         </script>
+                                  ]
+                                },
+                                options: {
+                                  legend: { display: false },
+                                  title: {
+                                    display: true,
+                                    text: 'Predicted world population (millions) in 2050'
+                                  }
+                                }
+                            });
+
+
+
+                        </script>
+
+
 
 <!--                    <div class="chart">-->
 <!--                        &lt;!&ndash; Sales Chart Canvas &ndash;&gt;-->
@@ -162,13 +162,13 @@
                     </div>
                     <!-- /.progress-group -->
 
-                    <div class="progress-group">
-                        Impounded
-                        <span class="float-right"><b>310</b>/400</span>
-                        <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
-                        </div>
-                    </div>
+<!--                    <div class="progress-group">-->
+<!--                        Impounded-->
+<!--                        <span class="float-right"><b>310</b>/400</span>-->
+<!--                        <div class="progress progress-sm">-->
+<!--                        <div class="progress-bar bg-danger" style="width: 75%"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <!-- /.progress-group -->
                     <div class="progress-group">
@@ -180,13 +180,13 @@
                     </div>
 
                     <!-- /.progress-group -->
-                    <div class="progress-group">
-                        Requested Drugs
-                        <span class="float-right"><b>250</b>/500</span>
-                        <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
-                        </div>
-                    </div>
+<!--                    <div class="progress-group">-->
+<!--                        Requested Drugs-->
+<!--                        <span class="float-right"><b>250</b>/500</span>-->
+<!--                        <div class="progress progress-sm">-->
+<!--                        <div class="progress-bar bg-warning" style="width: 50%"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <!-- /.progress-group -->
                     </div>
                     <!-- /.col -->
@@ -196,39 +196,39 @@
                 <!-- ./card-body -->
                 <div class="card-footer">
                 <div class="row">
-                    <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                        <h5 class="description-header">$35,210.43</h5>
-                        <span class="description-text">TOTAL REVENUE</span>
-                    </div>
+<!--                    <div class="col-sm-3 col-6">-->
+<!--                    <div class="description-block border-right">-->
+<!--                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>-->
+<!--                        <h5 class="description-header">$35,210.43</h5>-->
+<!--                        <span class="description-text">TOTAL REVENUE</span>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; /.description-block &ndash;&gt;-->
+<!--                    </div>-->
+                    <!-- /.col -->
+<!--                    <div class="col-sm-3 col-6">-->
+<!--                    <div class="description-block border-right">-->
+<!--                        <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>-->
+<!--                        <h5 class="description-header">$10,390.90</h5>-->
+<!--                        <span class="description-text">TOTAL COST</span>-->
+<!--                    </div>-->
                     <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                        <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                        <h5 class="description-header">$10,390.90</h5>
-                        <span class="description-text">TOTAL COST</span>
-                    </div>
-                    <!-- /.description-block -->
-                    </div>
+<!--                    <div class="col-sm-3 col-6">-->
+<!--                    <div class="description-block border-right">-->
+<!--                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>-->
+<!--                        <h5 class="description-header">$24,813.53</h5>-->
+<!--                        <span class="description-text">TOTAL PROFIT</span>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; /.description-block &ndash;&gt;-->
+<!--                    </div>-->
                     <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                        <h5 class="description-header">$24,813.53</h5>
-                        <span class="description-text">TOTAL PROFIT</span>
-                    </div>
-                    <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                        <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                        <h5 class="description-header">1200</h5>
-                        <span class="description-text">GOAL COMPLETIONS</span>
-                    </div>
+<!--                    <div class="col-sm-3 col-6">-->
+<!--                    <div class="description-block">-->
+<!--                        <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>-->
+<!--                        <h5 class="description-header">1200</h5>-->
+<!--                        <span class="description-text">GOAL COMPLETIONS</span>-->
+<!--                    </div>-->
                     <!-- /.description-block -->
                     </div>
                 </div>

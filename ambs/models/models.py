@@ -115,11 +115,11 @@ class AmbsModel:
         results = cur.fetchone()
         return results
     #
-    def drugs_per_year(self, ASS_DATE):
-
-        d = "SELECT EXTRACT(YEAR FROM ASS '2001-02-16 20:38:40')";
-        drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
-        cur.execute(drug_per_year)
-        results = cur.fetchone()
-        return results
+    # def drugs_per_year(self, ASS_DATE):
+    #
+    #     d = "SELECT EXTRACT(YEAR FROM ASS '2001-02-16 20:38:40')";
+    #     drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
+    #     cur.execute(drug_per_year)
+    #     results = cur.fetchone()
+    #     return results
 

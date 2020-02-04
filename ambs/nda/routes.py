@@ -15,24 +15,32 @@ def nda_get_data():
 
     # return jsonify({"all nda": data})
 
-    return render_template('nda/index.html', title='nda', len = len(data), data=data)
+    return render_template('nda/index.html', title='nda', len=len(data), data=data)
 
 
-@nda.route('/nda_data')
-def nda_get_district():
+@nda.route('/nda_district')
+def nda_get_district_drugshop():
     # med_id = 1
-    districts = nda_inst.get_district()
+    nda_chart_data = nda_inst.get_district()
+    count = []
+    district = []
 
-    # return jsonify({"all nda": data})
+    for item in nda_chart_data:
+        count.append(item['count'])
+        district.append(item['district'])
 
-    return render_template('nda/index.html', title='nda', len = len(districts), districts=districts)
+    # dist = nda_chart_data.drugshop
+    # print (dist)
+    # return jsonify(district)
+
+    return render_template('dashboard/index.html', district=district, count=count, nda_chart_data=nda_chart_data)
 
 
-@nda.route('/nda_data')
-def nda_get_drugshop():
-    # med_id = 1
-    drugshop = nda_inst.get_drugshop()
+# @nda.route('/nda_rugshop')
+# def nda_get_drugshop():
+#     # med_id = 1
+#     drugshop = nda_inst.get_drugshop()
+#
+#     return jsonify({"drug shop": drugshop})
 
-    # return jsonify({"all nda": data})
-
-    return render_template('nda/index.html', title='nda', len = len(drugshop), drugshop=drugshop)
+    # return render_template('dashboard/index.html', title='nda', len = len(drugshop), drugshop=drugshop)
