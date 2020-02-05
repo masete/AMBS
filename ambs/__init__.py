@@ -1,11 +1,11 @@
 from flask import Flask
-from ambs.config import Config
+from ambs.config import BaseConfig
 from flask_cors import CORS
 
 
-def create_app(config_class=Config):
+def create_app(config_class=BaseConfig):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(BaseConfig)
 
     CORS(app)
 

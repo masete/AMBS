@@ -1,5 +1,7 @@
 import psycopg2
 import os
+import ambs as ap
+from urllib.parse import urlparse
 from psycopg2.extras import RealDictCursor
 from werkzeug.security import generate_password_hash
 
@@ -116,8 +118,8 @@ class DatabaseConnection:
 
             """
         )
-        if os.getenv("FLASK_ENV") == "production":
-            self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+        if ap.config.ProductionConfig == "production":
+            self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URL, cursor_factory=RealDictCursor)
 
         else:
             self.connection = psycopg2.connect(dbname='ambs',
