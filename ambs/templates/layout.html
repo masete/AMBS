@@ -106,9 +106,21 @@
               <li class="nav-item">
                 <a href="{{ url_for('main.dashboard')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <p>NDA Dashboard</p>
+                </a>
+
+                <a href="{{ url_for('ura_dashboard.dashboard')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>URA Dashboard</p>
                 </a>
               </li>
+               <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Data Representation
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
 
               <li class="nav-item">
                 <a href="{{ url_for('importers.imported_drugs')}}" class="nav-link">

@@ -114,12 +114,10 @@ class AmbsModel:
         cur.execute(get_single_drug)
         results = cur.fetchone()
         return results
-    #
-    # def drugs_per_year(self, ASS_DATE):
-    #
-    #     d = "SELECT EXTRACT(YEAR FROM ASS '2001-02-16 20:38:40')";
-    #     drug_per_year = "SELECT * FROM medicine WHERE med_id = {}".format(ASS_DATE)
-    #     cur.execute(drug_per_year)
-    #     results = cur.fetchone()
-    #     return results
+
+    def get_co_name(self):
+        co_name = "SELECT CO_NAME, count(CO_NAME) AS Count FROM medicine GROUP BY CO_NAME"
+        cur.execute(co_name)
+        results = cur.fetchall()
+        return results
 

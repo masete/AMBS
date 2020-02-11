@@ -96,33 +96,33 @@
                 <div class="row">
                     <div class="col-md-8">
                     <p class="text-center">
-                        <strong>Drug shops in various districts</strong>
+                        <strong>Company names with their importing frequency</strong>
                     </p>
 
-                         <canvas id="bar-chart" width="800" height="450"></canvas>
+                         <canvas id="bar-chart" width="1000" height="550"></canvas>
 
 
-                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        <div id="chartContainer" style="height: 470px; width: 100%;"></div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                         <script>
 
-                            let data = {{nda_chart_data|tojson}}
+                            let data = {{ura_chart_data|tojson}}
                             let count = []
-                            let district = []
+                            let co_name = []
 
                             for(let i = 0; i < data.length; i ++){
                                 count.push(data[i]['count'])
-                                district.push(data[i]['district'])
+                                co_name.push(data[i]['co_name'])
                             }
                             new Chart(document.getElementById("bar-chart"), {
-                                type: 'bar',
+                                type: 'pie',
                                 data: {
-                                  labels: district,
+                                  labels: co_name,
                                   datasets: [
                                     {
-                                      label: "Districts ",
+                                      label: "Company names ",
                                       backgroundColor: [],
-                                      data: count
+                                      data: count,
                                     }
                                   ]
                                 },
@@ -130,7 +130,7 @@
                                   legend: { display: false },
                                   title: {
                                     display: true,
-                                    text: 'Number of drugshops in respective districts'
+                                    text: 'frequency of comapany importations'
                                   }
                                 }
                             });
