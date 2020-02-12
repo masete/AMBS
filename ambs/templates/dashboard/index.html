@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
+<!--            <div class="col-12 col-sm-6 col-md-3">-->
 <!--            <div class="info-box">-->
 <!--                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>-->
 
@@ -69,7 +69,7 @@
             <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                <h5 class="card-title">Recap Report</h5>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -78,13 +78,13 @@
                     <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
                         <i class="fas fa-wrench"></i>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <a href="#" class="dropdown-item">Action</a>
-                        <a href="#" class="dropdown-item">Another action</a>
-                        <a href="#" class="dropdown-item">Something else here</a>
-                        <a class="dropdown-divider"></a>
-                        <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
+<!--                    <div class="dropdown-menu dropdown-menu-right" role="menu">-->
+<!--                        <a href="#" class="dropdown-item">Action</a>-->
+<!--                        <a href="#" class="dropdown-item">Another action</a>-->
+<!--                        <a href="#" class="dropdown-item">Something else here</a>-->
+<!--                        <a class="dropdown-divider"></a>-->
+<!--                        <a href="#" class="dropdown-item">Separated link</a>-->
+<!--                    </div>-->
                     </div>
                     <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -116,6 +116,49 @@
                             }
                             new Chart(document.getElementById("bar-chart"), {
                                 type: 'bar',
+                                data: {
+                                  labels: district,
+                                  datasets: [
+                                    {
+                                      label: "Districts ",
+                                      backgroundColor: [],
+                                      data: count
+                                    }
+                                  ]
+                                },
+                                options: {
+                                  legend: { display: false },
+                                  title: {
+                                    display: true,
+                                    text: 'Number of drugshops in respective districts'
+                                  }
+                                }
+                            });
+
+
+
+                        </script>
+                         </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+
+                        <div class="card direct-chat direct-chat-primary">
+                              <div class="card-header">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                        <script>
+
+                            let data = {{nda_chart_data|tojson}}
+                            let count = []
+                            let district = []
+
+                            for(let i = 0; i < data.length; i ++){
+                                count.push(data[i]['count'])
+                                district.push(data[i]['district'])
+                            }
+                            new Chart(document.getElementById("bar-chart"), {
+                                type: 'pie',
                                 data: {
                                   labels: district,
                                   datasets: [

@@ -23,7 +23,7 @@ class NdaDataModel:
 
     def get_nda_data(self):
         nda = "SELECT SN, DRUGSHOP,PHYSICAL_ADDRESS ,TEL ,FULL_TIME_INCHARGE ,QUALIFICATION , REGISTRATION_NO ," \
-              "OWNER, HUMAN_VET_HERBAL, NEW_RENEWAL, DISTRICT  FROM nda_data"
+              "OWNER, DISTRICT  FROM nda_data"
         cur.execute(nda)
         results = cur.fetchall()
         return results
