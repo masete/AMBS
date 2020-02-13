@@ -1,117 +1,85 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="container-fluid">
-        <!-- Info boxes -->
+     <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-<!--            <div class="info-box">-->
-
-
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-            <div class="col-md-12">
+          <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                    </button>
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <a href="#" class="dropdown-item">Action</a>
-                        <a href="#" class="dropdown-item">Another action</a>
-                        <a href="#" class="dropdown-item">Something else here</a>
-                        <a class="dropdown-divider"></a>
-                        <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                    </div>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                    </button>
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Online Store Visitors</h3>
+                  <a href="javascript:void(0);">View Report</a>
                 </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                <div class="row">
-                    <div class="col-md-8">
-                    <p class="text-center">
-                        <strong>Drug shops in various districts</strong>
-                    </p>
+              </div>
+              <div class="card-body">
 
-                         <canvas id="bar-chart" width="800" height="400"></canvas>
+                <p class="text-center">
+                    <strong>Drug shops in various districts</strong>
+                </p>
+
+                     <canvas id="bar-chart" width="800" height="400"></canvas>
 
 
 <!--                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>-->
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                        <script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                    <script>
 
-                            let data = {{nda_chart_data|tojson}}
-                            let count = []
-                            let district = []
+                        let data = {{nda_chart_data|tojson}}
+                        let count = []
+                        let district = []
 
-                            for(let i = 0; i < data.length; i ++){
-                                count.push(data[i]['count'])
-                                district.push(data[i]['district'])
-                            }
-                            new Chart(document.getElementById("bar-chart"), {
-                                type: 'bar',
-                                data: {
-                                  labels: district,
-                                  datasets: [
-                                    {
-                                      label: "Districts ",
-                                      backgroundColor: [],
-                                      data: count
-                                    }
-                                  ]
-                                },
-                                options: {
-                                  legend: { display: false },
-                                  title: {
-                                    display: true,
-                                    text: 'Number of drugshops in respective districts'
-                                  }
+                        for(let i = 0; i < data.length; i ++){
+                            count.push(data[i]['count'])
+                            district.push(data[i]['district'])
+                        }
+                        new Chart(document.getElementById("bar-chart"), {
+                            type: 'bar',
+                            data: {
+                              labels: district,
+                              datasets: [
+                                {
+                                  label: "Districts ",
+                                  backgroundColor: ['rgb(0,99,132)','green','yellow','purple','orange', 'red','black',
+                                  'cyan','rgb(43, 65, 84)','rgb(102, 13, 56)','rgb(74, 74, 54)','rgb(169, 173, 153)','rgb(70, 87, 3)','rgb(238, 240, 230)','rgb(31, 24, 25)'],
+                                  data: count
                                 }
-                            });
+                              ]
+                            },
+                            options: {
+                              legend: { display: false },
+                              title: {
+                                display: true,
+                                text: 'Number of drugshops in respective districts'
+                              }
+                            }
+                        });
 
 
-<!--                            bar-chart.destroy();-->
-<!--                        </script>-->
-                                </div>
-                  <!-- /.col -->
+                          bar-chart.destroy();
+                         </script>
+
                 </div>
-                <!-- /.row -->
+
+
               </div>
+            </div>
+            <!-- /.card -->
 
-
-                <div class="row">
-          <!-- Left col -->
-          <div class="col-md-8">
-            <!-- MAP & BOX PANE -->
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Pie chart of districts and drug shops</h3>
-
+              <div class="card-header border-0">
+                <h3 class="card-title">Products</h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
                 </div>
               </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
-                <div class="d-md-flex">
+
 
                      <canvas id="pie-chart" width="800" height="450"></canvas>
 
@@ -128,7 +96,8 @@
                                   datasets: [
                                     {
                                       label: "Districts ",
-                                      backgroundColor: [],
+                                      backgroundColor: ['rgb(0,99,132)','green','yellow','purple','orange', 'red','black',
+                                  'cyan','rgb(43, 65, 84)','rgb(102, 13, 56)','rgb(74, 74, 54)','rgb(169, 173, 153)','rgb(70, 87, 3)','rgb(238, 240, 230)','rgb(31, 24, 25)'],
                                       data: count
                                     }
                                   ]
@@ -145,45 +114,23 @@
 
 
                         </script>
-<!--                  <div class="p-1 flex-fill" style="overflow: hidden">-->
 
-<!--                    </div>-->
-                    <!-- /.description-block -->
-                  </div><!-- /.card-pane-right -->
-                </div><!-- /.d-md-flex -->
+
+
               </div>
-              <!-- /.card-body -->
             </div>
-
-
-
-
-
-
-
-
-                     <div class="row">
-          <!-- Left col -->
-          <div class="col-md-8">
-            <!-- MAP & BOX PANE -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6">
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Line chart of districts and drug shops</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Sales</h3>
+                  <a href="javascript:void(0);">View Report</a>
                 </div>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="d-md-flex">
-
-                     <canvas id="line-chart" width="800" height="450"></canvas>
+              <canvas id="line-chart" width="800" height="450"></canvas>
 
 
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -195,13 +142,14 @@
 <!--                                district.push(data[i]['district'])-->
 <!--                            }-->
                             new Chart(document.getElementById("line-chart"), {
-                                type: 'line',
+                                type: 'polarArea',
                                 data: {
                                   labels: district,
                                   datasets: [
                                     {
                                       label: "Districts ",
-                                      backgroundColor: [],
+                                      backgroundColor: ['rgb(0,99,132)','green','yellow','purple','orange', 'red','black',
+                                  'cyan','rgb(43, 65, 84)','rgb(102, 13, 56)','rgb(74, 74, 54)','rgb(169, 173, 153)','rgb(70, 87, 3)','rgb(238, 240, 230)','rgb(31, 24, 25)'],
                                       data: count
                                     }
                                   ]
@@ -218,54 +166,68 @@
 
 
                         </script>
-<!--                  <div class="p-1 flex-fill" style="overflow: hidden">-->
-
-<!--                    </div>-->
-                    <!-- /.description-block -->
-                  </div><!-- /.card-pane-right -->
-                </div><!-- /.d-md-flex -->
-              </div>
-              <!-- /.card-body -->
-            </div>
-
-
-
-<!--                    <div class="chart">-->
-<!--                        &lt;!&ndash; Sales Chart Canvas &ndash;&gt;-->
-<!--                        <canvas id="salesChart" height="180" style="height: 180px;"></canvas>-->
-<!--                    </div>-->
-                    <!-- /.chart-responsive -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4">
-<!--                    <p class="text-center">-->
-
-
-
-                    <!-- /.progress-group -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                </div>
-                <!-- ./card-body -->
-                <div class="card-footer">
-                <div class="row">
-
-<!--                    </div>-->
-                    <!-- /.description-block -->
-                    </div>
-
-                    </div>
-                </div>
-                <!-- /.row -->
-                </div>
-                <!-- /.card-footer -->
             </div>
             <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Online Store Overview</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-success text-xl">
+                    <i class="ion ion-ios-refresh-empty"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-success"></i> 12%
+                    </span>
+                    <span class="text-muted">CONVERSION RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-warning text-xl">
+                    <i class="ion ion-ios-cart-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                    </span>
+                    <span class="text-muted">SALES RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center mb-0">
+                  <p class="text-danger text-xl">
+                    <i class="ion ion-ios-people-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                    </span>
+                    <span class="text-muted">REGISTRATION RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+              </div>
             </div>
-            <!-- /.col -->
+          </div>
+          <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
-    </div><!--/. container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 {% endblock content %}
