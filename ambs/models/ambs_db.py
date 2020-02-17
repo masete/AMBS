@@ -1,5 +1,5 @@
 import psycopg2
-import os
+from os import environ
 import ambs as ap
 from urllib.parse import urlparse
 from psycopg2.extras import RealDictCursor
