@@ -119,7 +119,7 @@ class DatabaseConnection:
             """
         )
         if ap.config.ProductionConfig == "production":
-            self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URL, cursor_factory=RealDictCursor)
+            self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URI, cursor_factory=RealDictCursor)
 
         # else:
         #     self.connection = psycopg2.connect(dbname='ambs',
