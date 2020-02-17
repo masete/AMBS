@@ -121,12 +121,12 @@ class DatabaseConnection:
         if ap.config.ProductionConfig == "production":
             self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URI, cursor_factory=RealDictCursor)
 
-        # else:
-        #     self.connection = psycopg2.connect(dbname='ambs',
-        #                                        user='postgres',
-        #                                        password='12345678',
-        #                                        host='localhost',
-        #                                        port='5432', cursor_factory=RealDictCursor)
+        else:
+            self.connection = psycopg2.connect(dbname='ambs',
+                                               user='postgres',
+                                               password='12345678',
+                                               host='localhost',
+                                               port='5432', cursor_factory=RealDictCursor)
         self.connection.autocommit = True
         self.cursor = self.connection.cursor()
         print(self.cursor)
