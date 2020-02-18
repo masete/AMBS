@@ -1,17 +1,23 @@
 import psycopg2
-from os import environ
-import os
-import ambs as ap
-from urllib.parse import urlparse
+from ambs import config
+from ambs.config import env_config
 from psycopg2.extras import RealDictCursor
-from werkzeug.security import generate_password_hash
 
 
 class DatabaseConnection:
+    # def __init__(self):
+
     """
     Initializing my database
     """
     def __init__(self):
+        self.credentials = dict(
+            dbname='',
+            user='postgres',
+            password='12345678',
+            host='localhost',
+            port=5432
+        )
         self.commands = (
             """
             CREATE TABLE IF NOT EXISTS users(
@@ -119,47 +125,62 @@ class DatabaseConnection:
 
             """
         )
+        if config.get() == 'development':
+            dbname = env_config['development'].DATABASE
+            self.credentials['dbname'] = dbname
+
+        if config.get() == 'testing':
+            dbname = env_config['testing'].DATABASE
+            self.credentials['dbname'] = dbname
+
+        if config.get() == 'production':
+            dbname = env_config['production'].DATABASE
+            self.credentials['host'] = env_config['production'].HOST
+            self.credentials['user'] = env_config['production'].USER
+            self.credentials['password'] = env_config['production'].PASSWORD
+            self.credentials['dbname'] = dbname
 
         try:
-
-            if os.getenv("FLASK_ENV") == "production":
-                self.connection = psycopg2.connect("postgres://qxunsdbokdvold:ccd98e6f32a2d6b455dd941cf19bb1a5a12cb0b8d5ee8ff998c3c5d8a041322a@ec2-52-203-160-194.compute-1.amazonaws.com:5432/dartm9a0g4f4f0", cursor_factory=RealDictCursor)
-
-            elif os.getenv("FLASK_ENV") == "TESTING":
-                print('Connecting to test db')
-                self.connection = psycopg2.connect(dbname='test_ambs',
-                                                   user='postgres',
-                                                   password='12345678',
-                                                   host='localhost',
-                                                   port='5432', cursor_factory=RealDictCursor)
-            else:
-                print('Connecting development db')
-                self.connection = psycopg2.connect(dbname='ambs',
-                                                   user='postgres',
-                                                   password='12345678',
-                                                   host='localhost',
-                                                   port='5432', cursor_factory=RealDictCursor)
-
-            self.connection.autocommit = True
-            self.cursor = self.connection.cursor()
+            self.conn = psycopg2.connect(**self.credentials, cursor_factory=RealDictCursor)
+            self.conn.autocommit = True
+            self.cursor = self.conn.cursor()
 
             for command in self.commands:
                 self.cursor.execute(command)
-
+            # print(f"connection successful on {dbname}")
         except Exception as error:
             print(f"error: {error}")
-        # if ap.config.ProductionConfig == "production":
-        #     self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URI, cursor_factory=RealDictCursor)
-        #
-        # else:
-        #     self.connection = psycopg2.connect(dbname='ambs',
-        #                                        user='postgres',
-        #                                        password='12345678',
-        #                                        host='localhost',
-        #                                        port='5432', cursor_factory=RealDictCursor)
-        # self.connection.autocommit = True
-        # self.cursor = self.connection.cursor()
-        # print(self.cursor)
-        # for command in self.commands:
-        #     self.cursor.execute(command)
 
+
+        # try:
+        #
+        #     if os.getenv("FLASK_ENV") == "production":
+        #         self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+        #         self.credentials = psycopg2.connect(os.getenv('host'), cursor_factory=RealDictCursor)
+        #         self.credentials['user'] = psycopg2.connect(os.getenv('user'), cursor_factory=RealDictCursor)
+        #         self.credentials['password'] = psycopg2.connect(os.getenv('password'), cursor_factory=RealDictCursor)
+        #
+        #     elif os.getenv("FLASK_ENV") == "TESTING":
+        #         print('Connecting to test db')
+        #         self.connection = psycopg2.connect(dbname='test_ambs',
+        #                                            user='postgres',
+        #                                            password='12345678',
+        #                                            host='localhost',
+        #                                            port='5432', cursor_factory=RealDictCursor)
+        #     else:
+        #         print('Connecting development db')
+        #         self.connection = psycopg2.connect(dbname='ambs',
+        #                                            user='postgres',
+        #                                            password='12345678',
+        #                                            host='localhost',
+        #                                            port='5432', cursor_factory=RealDictCursor)
+        #
+        #     self.connection.autocommit = True
+        #     self.cursor = self.connection.cursor()
+        #
+        #     for command in self.commands:
+        #         self.cursor.execute(command)
+        #
+        # except Exception as error:
+        #     print(f"error: {error}")
+        #
