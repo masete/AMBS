@@ -1,5 +1,6 @@
 import psycopg2
 from os import environ
+import os
 import ambs as ap
 from urllib.parse import urlparse
 from psycopg2.extras import RealDictCursor
@@ -118,18 +119,47 @@ class DatabaseConnection:
 
             """
         )
-        if ap.config.ProductionConfig == "production":
-            self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URI, cursor_factory=RealDictCursor)
 
-        else:
-            self.connection = psycopg2.connect(dbname='ambs',
-                                               user='postgres',
-                                               password='12345678',
-                                               host='localhost',
-                                               port='5432', cursor_factory=RealDictCursor)
-        self.connection.autocommit = True
-        self.cursor = self.connection.cursor()
-        print(self.cursor)
-        for command in self.commands:
-            self.cursor.execute(command)
+        try:
+
+            if os.getenv("FLASK_ENV") == "production":
+                self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+
+            elif os.getenv("FLASK_ENV") == "TESTING":
+                print('Connecting to test db')
+                self.connection = psycopg2.connect(dbname='test_ambs',
+                                                   user='postgres',
+                                                   password='12345678',
+                                                   host='localhost',
+                                                   port='5432', cursor_factory=RealDictCursor)
+            else:
+                print('Connecting development db')
+                self.connection = psycopg2.connect(dbname='ambs',
+                                                   user='postgres',
+                                                   password='12345678',
+                                                   host='localhost',
+                                                   port='5432', cursor_factory=RealDictCursor)
+
+            self.connection.autocommit = True
+            self.cursor = self.connection.cursor()
+
+            for command in self.commands:
+                self.cursor.execute(command)
+
+        except Exception as error:
+            print(f"error: {error}")
+        # if ap.config.ProductionConfig == "production":
+        #     self.connection = psycopg2.connect(ap.config.ProductionConfig.DATABASE_URI, cursor_factory=RealDictCursor)
+        #
+        # else:
+        #     self.connection = psycopg2.connect(dbname='ambs',
+        #                                        user='postgres',
+        #                                        password='12345678',
+        #                                        host='localhost',
+        #                                        port='5432', cursor_factory=RealDictCursor)
+        # self.connection.autocommit = True
+        # self.cursor = self.connection.cursor()
+        # print(self.cursor)
+        # for command in self.commands:
+        #     self.cursor.execute(command)
 

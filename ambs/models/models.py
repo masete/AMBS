@@ -121,3 +121,19 @@ class AmbsModel:
         results = cur.fetchall()
         return results
 
+    def query_by_year(self):
+
+        year = "SELECT ASS_DATE FROM medicine"
+        print(year)
+        cur.execute(year)
+        results = cur.fetchall()
+        return results
+
+    def query_year(self):
+        year = "SELECT * FROM medicine WHERE ASS_DATE EXTRACT YEAR = '2019'"
+        print(year)
+        cur.execute(year)
+        results = cur.fetchall()
+        return results
+
+

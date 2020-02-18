@@ -26,17 +26,25 @@ def data():
     return render_template('importers/index.html', title='importers', len = len(data1), data1=data1)
 
 
-
 @importer.route('/imported_drugs/<int:med_id>')
 def imported_drug_by_id(med_id):
-    meds_per_year = model_inst.single_med(med_id)
-    return render_template('importers/single_data_field.html', title='importers', meds_per_year=meds_per_year)
-    # return jsonify({"medicines per year": meds_per_year})
-#
-#
-# @importer.route('/imported_drugs/<int:ASS_DATE>')
-# def imported_drugs_annually(ASS_DATE):
-#     meds_per_year = model_inst.drugs_per_year(ASS_DATE)
-#
-#     return jsonify({"medicines per year": meds_per_year})
-#
+    single_med = model_inst.single_med(med_id)
+    return render_template('importers/single_data_field.html', title='importers', single_med=single_med)
+    # return jsonify({"medicines per year": single_med})
+
+
+@importer.route('/imported_by_year')
+def imported_drug_by_year():
+
+    meds_per_year = model_inst.query_by_year()
+    return jsonify({"medicines per year": meds_per_year})
+    # return render_template('importers/single_data_field.html', title='importers', meds_per_year=meds_per_year)
+
+
+@importer.route('/imported_by_year')
+def imported_by_year():
+    meds_year = model_inst.query_year()
+    return jsonify({"medicines per year": meds_year})
+    # return render_template('importers/single_data_field.html', title='importers', meds_year=meds_year)
+
+

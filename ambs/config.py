@@ -1,4 +1,5 @@
 import os
+
 class BaseConfig:
     """ Project environment configurations """
     DEBUG = False
@@ -14,5 +15,5 @@ class ProductionConfig(BaseConfig):
 env_config = dict(
     # development = DevelopmentConfig,
     # testing = TestingConfig,
-    production = ProductionConfig
+    production=ProductionConfig
 )
