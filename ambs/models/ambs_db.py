@@ -1,7 +1,6 @@
 import psycopg2
-import ambs as ap
-from ambs import config
-from ambs.config import env_config
+import config
+from config import env_config
 from psycopg2.extras import RealDictCursor
 
 
@@ -126,7 +125,7 @@ class DatabaseConnection:
 
             """
         )
-        if ap.config.get() == 'development':
+        if config.get() == 'development':
             self.connection = psycopg2.connect(dbname='ambs',
                                                user='postgres',
                                                password='12345678',
@@ -139,7 +138,7 @@ class DatabaseConnection:
         #     dbname = env_config['testing'].DATABASE
         #     self.credentials['dbname'] = dbname
 
-        if ap.config.get() == 'production':
+        if config.get() == 'production':
             dbname = env_config['production'].DATABASE
             self.credentials['host'] = env_config['production'].HOST
             self.credentials['user'] = env_config['production'].USER

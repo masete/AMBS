@@ -1,5 +1,5 @@
 from flask import Flask
-from ambs.config import BaseConfig
+from config import BaseConfig
 from flask_cors import CORS
 
 
