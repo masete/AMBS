@@ -1,5 +1,6 @@
 from flask import Flask
-from config import BaseConfig
+# from .config import config import BaseConfig
+from .config import BaseConfig
 from flask_cors import CORS
 
 
